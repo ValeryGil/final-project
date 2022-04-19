@@ -14,7 +14,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import { deletePostQuery } from '../../redux/actionCreators/postsActionCreator';
+import { useDispatch } from 'react-redux';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,9 +29,14 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function PostsItem({ image, title, author, text }) {
+export default function PostsItem({ image, title, author, text, _id }) {
   const [expanded, setExpanded] = React.useState(false);
+  const dispatch = useDispatch()
   const description = text.length > 200 ? text.slice(0, 200) + '...' : text
+
+  const deleteHandler = () => {
+    dispatch(deletePostQuery(_id))
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -70,6 +77,9 @@ export default function PostsItem({ image, title, author, text }) {
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
+          <CardActions spacing={2}>
+            <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: red[500] }} onClick={deleteHandler}>Delete Post</Button>
+          </CardActions>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
