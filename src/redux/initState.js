@@ -6,6 +6,7 @@ const initState = {
     email: '',
     token: '',
   },
+  detailPost: {},
 }
 
 export default initState
