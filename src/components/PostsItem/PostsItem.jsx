@@ -17,6 +17,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid } from '@mui/material';
 import { deletePostQuery } from '../../redux/actionCreators/postsActionCreator';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,6 +33,7 @@ const ExpandMore = styled((props) => {
 export default function PostsItem({ image, title, author, text, _id }) {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const description = text.length > 200 ? text.slice(0, 200) + '...' : text
 
   const deleteHandler = () => {
@@ -78,6 +80,7 @@ export default function PostsItem({ image, title, author, text, _id }) {
             <ShareIcon />
           </IconButton>
           <CardActions spacing={2}>
+            <Button variant="contained" aria-label="outlined primary button group" onClick={() => navigate(`/posts/${_id}`)}>Go to Post</Button>
             <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: red[500] }} onClick={deleteHandler}>Delete Post</Button>
           </CardActions>
           <ExpandMore
