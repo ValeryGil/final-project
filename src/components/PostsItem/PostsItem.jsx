@@ -16,8 +16,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid } from '@mui/material';
 import { deletePostQuery } from '../../redux/actionCreators/postsActionCreator';
-import { useDispatch } from 'react-redux';
+import { deleteLikePostQuery, setLikePostQuery } from '../../redux/actionCreators/likesPostsActionCreators';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FavoriteBorder } from '@mui/icons-material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,14 +32,23 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function PostsItem({ image, title, author, text, _id }) {
+export default function PostsItem({ image, title, author, text, likes, _id }) {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const description = text.length > 200 ? text.slice(0, 200) + '...' : text
+  const userId = useSelector((store) => store.person._id)
 
   const deleteHandler = () => {
     dispatch(deletePostQuery(_id))
+  }
+
+  const likePostHandler = () => {
+    if (!likes.includes(userId)) {
+      dispatch(setLikePostQuery(_id))
+    } else {
+      dispatch(deleteLikePostQuery(_id))
+    }
   }
 
   const handleExpandClick = () => {
@@ -73,8 +84,9 @@ export default function PostsItem({ image, title, author, text, _id }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorite">
-            <FavoriteIcon />
+          <IconButton aria-label="add to favorite" onClick={likePostHandler}>
+            {(!likes.includes(userId)) ? <FavoriteBorder /> : <FavoriteIcon sx={{ color: red[500] }} />}
+            <Typography textAlign="center" variant="h6">{likes.length}</Typography>
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
