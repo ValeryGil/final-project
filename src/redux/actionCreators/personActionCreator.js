@@ -20,3 +20,15 @@ export const signInQuery = ({ email, password, cb }) => async (dispatch) => {
   );
   typeof cb === 'function' && cb();
 };
+
+export const signUpQuery = ({ email, password, successCb, errorCb }) => async (dispatch) => {
+  const response = await axiosInstance.post("signup", {
+    email,
+    password,
+  });
+  if (response.status === 201) {
+    dispatch(signInQuery({ email, password, cb: successCb }))
+  } else {
+    errorCb('Error')
+  }
+};
