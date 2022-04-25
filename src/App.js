@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import { RequireAuth } from "./components/Authorization/RequireAuth/RequireAuth";
 import SignIn from "./components/Authorization/SignIn/SignIn";
 import SignUp from "./components/Authorization/SignUp/SignUp";
+import { LogOut } from "./components/Authorization/LogOut/LogOut";
 import Footer from "./components/Footer/Footer";
 import { PostsDetail } from "./components/PostsDetail/PostsDetail";
 
@@ -61,6 +62,7 @@ function App() {
               <Route path="/posts/:postId" element={<PostsDetail />}/>
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/logout" element={<LogOut />} />
             </Routes>
           </Container>
           <Footer />

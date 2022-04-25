@@ -1,4 +1,4 @@
-import { SIGN_IN } from "../types/personTypes"
+import { SIGN_IN, LOGOUT } from "../types/personTypes"
 
 export const personReducer = (store = {}, action) => {
   switch (action.type) {
@@ -7,6 +7,12 @@ export const personReducer = (store = {}, action) => {
 		...store,
 		...action.payload
 	  }
+
+	case LOGOUT:
+      return {
+        ...store,
+        token: action.payload,
+      }
 	
 	default:
 	  return store
