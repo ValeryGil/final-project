@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../components/config/axios";
-import { SIGN_IN } from "../types/personTypes";
+import { LOGOUT, SIGN_IN } from "../types/personTypes";
 
 export const signIn = (person) => ({
   type: SIGN_IN,
@@ -32,3 +32,10 @@ export const signUpQuery = ({ email, password, successCb, errorCb }) => async (d
     errorCb('Error')
   }
 };
+
+export const logOutUser = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+    payload: '',
+  })
+}
