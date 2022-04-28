@@ -32,11 +32,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function PostsItem({ image, title, author, text, likes, _id }) {
+export default function PostsItem({ image, title, author, text, likes, created_at, _id }) {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const description = text.length > 200 ? text.slice(0, 200) + '...' : text
+  const dateNormal = created_at.replace("T", " ").replace("Z", " ").substring(0, created_at.length - 5)
   const userId = useSelector((store) => store.person._id)
 
   const deleteHandler = () => {
@@ -70,7 +71,7 @@ export default function PostsItem({ image, title, author, text, likes, _id }) {
             </IconButton>
           }
           title={title}
-          subheader="September 14, 2016" // new Date(month, date, year)
+          subheader={dateNormal}
         />
         <CardMedia
           component="img"

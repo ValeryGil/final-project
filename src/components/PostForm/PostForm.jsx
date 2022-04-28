@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { Button, Stack } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { loadNewPost } from '../../redux/actionCreators/postsActionCreator';
+import { useNavigate } from 'react-router-dom';
 
 const PostForm = () => {
   const [title, setTitle] = React.useState('')
@@ -10,6 +11,7 @@ const PostForm = () => {
   const [image, setImage] = React.useState('')
   const [tags, setTags] = React.useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const submitHandler = () => {
     const preparedPostQuery = {
@@ -44,7 +46,7 @@ const PostForm = () => {
       <div>
         <TextField id="outlined-basic" label="Tags..." variant="outlined" value={tags} onChange={((e) => setTags(e.target.value))} />
       </div>
-      <Button variant="contained" onClick={submitHandler}>Create post</Button>
+      <Button variant="contained" onClick={(() => {submitHandler(); navigate('/posts')})}>Create post</Button>
     </Stack>
   )
 }

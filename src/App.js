@@ -59,7 +59,14 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route path="/posts/:postId" element={<PostsEditDetailModal />}/>
+              <Route
+                path="/posts/:postId"
+                element={
+                  <RequireAuth>
+                    <PostsEditDetailModal />
+                  </RequireAuth>
+                }
+              />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/logout" element={<LogOut />} />
