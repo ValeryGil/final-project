@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getDetailPostQuery } from '../../redux/actionCreators/detailPostActionCreator';
+import { usePostsDetailContext } from '../PostsDetailModal/PostsEditDetailModal';
 
 
 const ExpandMore = styled((props) => {
@@ -36,6 +37,7 @@ export const PostsDetail = () => {
   const dispatch = useDispatch()
   const { postId } = useParams()
   const detailPost = useSelector((store) => store.detailPost)
+  const { openModal } = usePostsDetailContext()
   
   useEffect(() => {
     dispatch(getDetailPostQuery(postId))
@@ -86,7 +88,7 @@ export const PostsDetail = () => {
             </IconButton>
             <CardActions spacing={2}>
               <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: green[500] }}>Add Comment</Button>
-              <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: orange[500] }}>Edit Post</Button>
+              <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: orange[500] }} onClick={openModal}>Edit Post</Button>
             </CardActions>
             <ExpandMore
               expand={expanded}

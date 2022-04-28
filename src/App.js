@@ -13,7 +13,7 @@ import SignIn from "./components/Authorization/SignIn/SignIn";
 import SignUp from "./components/Authorization/SignUp/SignUp";
 import { LogOut } from "./components/Authorization/LogOut/LogOut";
 import Footer from "./components/Footer/Footer";
-import { PostsDetail } from "./components/PostsDetail/PostsDetail";
+import PostsEditDetailModal from "./components/PostsDetailModal/PostsEditDetailModal";
 
 const themeLight = createTheme({
   palette: {
@@ -59,7 +59,7 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route path="/posts/:postId" element={<PostsDetail />}/>
+              <Route path="/posts/:postId" element={<PostsEditDetailModal />}/>
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/logout" element={<LogOut />} />
