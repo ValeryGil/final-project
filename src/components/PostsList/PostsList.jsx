@@ -21,7 +21,7 @@ const PostsList = () => {
     <Grid container spacing={2} justifyContent="center">
       {posts.map((post) => {
         return <PostsItem key={post._id} {...post} />
-      })}
+      }).reverse()}
     </Grid>
   )
 }

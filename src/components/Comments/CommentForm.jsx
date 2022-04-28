@@ -15,7 +15,7 @@ export const CommentsForm = () => {
       text,
     }
     e.preventDefault()
-    dispatch(addCommentQuery(postId, preparedComment))
+    dispatch(addCommentQuery(postId, preparedComment, setText))
   }
 
   return (

@@ -38,6 +38,8 @@ export const PostsDetail = () => {
   const { postId } = useParams()
   const detailPost = useSelector((store) => store.detailPost)
   const { openModal } = usePostsDetailContext()
+  const descriptionDetailPost = detailPost.text.length > 200 ? detailPost.text.slice(0, 200) + '...' : detailPost.text
+  const dateNormalDetailPost = detailPost.created_at.replace("T", " ").replace("Z", " ").substring(0, detailPost.created_at.length - 5)
   
   useEffect(() => {
     dispatch(getDetailPostQuery(postId))
@@ -66,7 +68,7 @@ export const PostsDetail = () => {
               </IconButton>
             }
             title={detailPost.title}
-            subheader="September 14, 2016" // new Date(month, date, year)
+            subheader={dateNormalDetailPost}
           />
           <CardMedia
             component="img"
@@ -76,7 +78,7 @@ export const PostsDetail = () => {
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {detailPost.text}
+              {descriptionDetailPost}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>

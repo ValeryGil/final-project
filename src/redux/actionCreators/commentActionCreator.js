@@ -7,7 +7,7 @@ export const addComment = (newObjectPost) => ({
   payload: newObjectPost,
 })
 
-export const addCommentQuery = (_id, post) => async (dispatch) => {
+export const addCommentQuery = (_id, post, setText) => async (dispatch) => {
   const response = await fetch(`https://api.react-learning.ru/posts/comments/${_id}`, {
     method: 'POST',
     headers: {
@@ -18,6 +18,7 @@ export const addCommentQuery = (_id, post) => async (dispatch) => {
   })
   const postFromApi = await response.json()
   dispatch(addComment(postFromApi))
+  setText('')
 }
 
 export const deleteComment = (_id) => ({

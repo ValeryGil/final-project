@@ -43,8 +43,8 @@ export const CommentsList = () => {
     <>
       <CardActions disableSpacing>
         <Typography>
-          Comments:
-        </Typography>        
+          {detailPost.comments.length} Comments:
+        </Typography>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
