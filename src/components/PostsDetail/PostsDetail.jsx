@@ -8,7 +8,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { green, orange, red } from '@mui/material/colors';
+import { orange, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getDetailPostQuery } from '../../redux/actionCreators/detailPostActionCreator';
 import { usePostsDetailContext } from '../PostsDetailModal/PostsEditDetailModal';
-
+import { Comments } from '../Comments/Comments';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -87,7 +87,6 @@ export const PostsDetail = () => {
               <ShareIcon />
             </IconButton>
             <CardActions spacing={2}>
-              <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: green[500] }}>Add Comment</Button>
               <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: orange[500] }} onClick={openModal}>Edit Post</Button>
             </CardActions>
             <ExpandMore
@@ -106,6 +105,9 @@ export const PostsDetail = () => {
               </Typography>
             </CardContent>
           </Collapse>
+          <CardContent spacing={2}>
+            <Comments />
+          </CardContent>
         </Card>
       </Grid>
     </Grid>
