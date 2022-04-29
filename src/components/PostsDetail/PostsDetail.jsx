@@ -10,16 +10,16 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { orange, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getDetailPostQuery } from '../../redux/actionCreators/detailPostActionCreator';
 import { usePostsDetailContext } from '../PostsDetailModal/PostsEditDetailModal';
 import { Comments } from '../Comments/Comments';
+import FirstPageTwoToneIcon from '@mui/icons-material/FirstPageTwoTone';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,6 +38,7 @@ export const PostsDetail = () => {
   const { postId } = useParams()
   const detailPost = useSelector((store) => store.detailPost)
   const { openModal } = usePostsDetailContext()
+  const navigate = useNavigate()
       
   useEffect(() => {
     dispatch(getDetailPostQuery(postId))
@@ -84,7 +85,7 @@ export const PostsDetail = () => {
               <FavoriteIcon />
             </IconButton>
             <IconButton aria-label="share">
-              <ShareIcon />
+              <FirstPageTwoToneIcon onClick={() => navigate('/posts')} />
             </IconButton>
             <CardActions spacing={2}>
               <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: orange[500] }} onClick={openModal}>Edit Post</Button>
