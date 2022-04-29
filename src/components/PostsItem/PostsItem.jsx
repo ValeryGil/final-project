@@ -11,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid } from '@mui/material';
@@ -89,12 +88,12 @@ export default function PostsItem({ image, title, author, text, likes, created_a
             {(!likes.includes(userId)) ? <FavoriteBorder /> : <FavoriteIcon sx={{ color: red[500] }} />}
             <Typography textAlign="center" variant="h6">{likes.length}</Typography>
           </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
           <CardActions spacing={2}>
             <Button variant="contained" aria-label="outlined primary button group" onClick={() => navigate(`/posts/${_id}`)}>Go to Post</Button>
-            <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: red[500] }} onClick={deleteHandler}>Delete Post</Button>
+            {(Object.values(author).includes(userId))
+              ? <Button variant="contained" aria-label="outlined primary button group" sx={{ bgcolor: red[500] }} onClick={deleteHandler}>Delete Post</Button>
+              : null
+            }
           </CardActions>
           <ExpandMore
             expand={expanded}
