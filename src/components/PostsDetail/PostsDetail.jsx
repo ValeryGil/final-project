@@ -9,7 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { orange, red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid } from '@mui/material';
@@ -81,9 +80,6 @@ export const PostsDetail = () => {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorite">
-              <FavoriteIcon />
-            </IconButton>
             <IconButton aria-label="share">
               <FirstPageTwoToneIcon onClick={() => navigate('/posts')} />
             </IconButton>

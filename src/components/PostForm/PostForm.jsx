@@ -38,7 +38,7 @@ const PostForm = () => {
         <TextField id="outlined-basic" label="Title..." variant="outlined" value={title} onChange={((e) => setTitle(e.target.value))} />
       </div>
       <div>
-        <TextField id="outlined-basic" maxRows={10} multiline label="Text..." variant="outlined" value={text} onChange={((e) => setText(e.target.value))} />
+        <TextField id="outlined-basic" maxRows={10} multiline sx={{ width: '25ch' }} label="Text..." variant="outlined" value={text} onChange={((e) => setText(e.target.value))} />
       </div>
       <div>
         <TextField id="outlined-basic" label="Image" variant="outlined" value={image} onChange={((e) => setImage(e.target.value))} />
